@@ -171,74 +171,74 @@ public class First_Activity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void mypdf(View view,String tn,String d,String s,String r,String py,String con,String dt,String tm){
+    public void mypdf(View view, String tn, String d, String s, String r, String py, String con, String dt, String tm) {
 
 
         PdfDocument pdfDocument = new PdfDocument();
         Paint p1 = new Paint();
         Paint p = new Paint();
-        Paint title_p= new Paint();
+        Paint title_p = new Paint();
 
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200,2010,1).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
         p.setTextSize(30);
-        p.setColor(Color.rgb(171,70,210));
+        p.setColor(Color.rgb(171, 70, 210));
 
         p1.setTextAlign(Paint.Align.LEFT);
-        p1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
-        p1.setColor(Color.rgb(12,30,128));
+        p1.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        p1.setColor(Color.rgb(12, 30, 128));
         p1.setTextSize(40);
 
         title_p.setTextAlign(Paint.Align.CENTER);
-        title_p.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+        title_p.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         title_p.setTextSize(70);
 
-        canvas.drawText("Bus Ticket",1200/2,80,title_p);
+        canvas.drawText("Bus Ticket", 1200 / 2, 80, title_p);
 
 
-        String s1="Ticket No.:";
-        page.getCanvas().drawText(s1,50,150,p1);
+        String s1 = "Ticket No.:";
+        page.getCanvas().drawText(s1, 50, 150, p1);
         p.setTextAlign(Paint.Align.CENTER);
-        page.getCanvas().drawText(tn,200,180,p);
+        page.getCanvas().drawText(tn, 200, 180, p);
 
-        String s2 ="Rout:";
-        page.getCanvas().drawText(s2,500,150,p1);
+        String s2 = "Rout:";
+        page.getCanvas().drawText(s2, 500, 150, p1);
         p.setTextAlign(Paint.Align.RIGHT);
-        page.getCanvas().drawText(r,500+100,180,p);
+        page.getCanvas().drawText(r, 500 + 100, 180, p);
 
-        String s3 ="Source:";
-        page.getCanvas().drawText(s3,50,230,p1);
-        page.getCanvas().drawText(s,250+150,260,p);
+        String s3 = "Source:";
+        page.getCanvas().drawText(s3, 50, 230, p1);
+        page.getCanvas().drawText(s, 250 + 150, 260, p);
 
-        String s4 ="Destination:";
-        page.getCanvas().drawText(s4,500,230,p1);
-        page.getCanvas().drawText(d,550+250,260,p);
+        String s4 = "Destination:";
+        page.getCanvas().drawText(s4, 500, 230, p1);
+        page.getCanvas().drawText(d, 550 + 250, 260, p);
 
-        String s5 ="Pay:";
-        page.getCanvas().drawText(s5,50,350,p1);
-        page.getCanvas().drawText(py,200,350,p);
+        String s5 = "Pay:";
+        page.getCanvas().drawText(s5, 50, 350, p1);
+        page.getCanvas().drawText(py, 200, 350, p);
 
-        String s6 ="Conductor:";
-        page.getCanvas().drawText(s6,500,350,p1);
-        page.getCanvas().drawText(con,550+250,380,p);
+        String s6 = "Conductor:";
+        page.getCanvas().drawText(s6, 500, 350, p1);
+        page.getCanvas().drawText(con, 550 + 250, 380, p);
 
-        String s7 ="Date:";
-        page.getCanvas().drawText(s7,0,50,p1);
-        page.getCanvas().drawText(dt,250,50,p);
+        String s7 = "Date:";
+        page.getCanvas().drawText(s7, 0, 50, p1);
+        page.getCanvas().drawText(dt, 250, 50, p);
 
-        String s8 ="Time:";
-        page.getCanvas().drawText(s8,850,50,p1);
-        page.getCanvas().drawText(tm,1100,50,p);
+        String s8 = "Time:";
+        page.getCanvas().drawText(s8, 850, 50, p1);
+        page.getCanvas().drawText(tm, 1100, 50, p);
 
         pdfDocument.finishPage(page);
 
-        String FP = Environment.getExternalStorageDirectory().getPath()+"/Download/Customer.pdf";
+        String FP = Environment.getExternalStorageDirectory().getPath() + "/Download/Customer.pdf";
         File f = new File(FP);
-        try{
+        try {
             pdfDocument.writeTo(new FileOutputStream(f));
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         pdfDocument.close();
@@ -284,7 +284,7 @@ public class First_Activity extends AppCompatActivity {
                                     Toast.makeText(First_Activity.this, "Invalid Card", Toast.LENGTH_SHORT).show();
                                 } else {
 
-                                    ActivityCompat.requestPermissions(First_Activity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+                                    ActivityCompat.requestPermissions(First_Activity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
 
                                     Calendar c = Calendar.getInstance();
                                     String d, m, y;
@@ -305,61 +305,60 @@ public class First_Activity extends AppCompatActivity {
                                                 getEmail.setCancelable(false);
                                                 getEmail.setTitle("Send E-Ticket");
                                                 getEmail.setMessage("Send E-Ticket to " + RECIPENT_EMail);
-                                                getEmail.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
-                                                    day="hello ";
-//                                                    day = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
-//                                                    month = String.valueOf(c.get(Calendar.MONTH) + 1);
-//                                                    year = String.valueOf(c.get(Calendar.YEAR));
-//                                                    h = String.valueOf(c.get(Calendar.HOUR));
-//                                                    min = String.valueOf(c.get(Calendar.MINUTE));
-//                                                        if (c.get(Calendar.HOUR_OF_DAY) > 12) {
-//                                                        tm = "PM";
-//                                                    } else {
-//                                                        tm = "AM";
-//                                                    }
-                                                    public void onClick(DialogInterface dialog, int which) {
 
-                                                        DatabaseReference rf7 = FirebaseDatabase.getInstance().getReference("Customer").child(TIL_cardID.getEditText().getText().toString().trim()).child("Tickets");
-                                                        t1.setDate(day + "-" + month + "-" + year);
-                                                        t1.setCond(Conductor_Name);
-                                                        t1.setDestination(sp3.getSelectedItem().toString());
-                                                        t1.setSource(sp2.getSelectedItem().toString());
-                                                        t1.setPay(String.valueOf(pay));
-                                                        t1.setTime(h + ":" + min + " " + tm);
-                                                        t1.setTicket_No(t1.getDate().replace("-", "") + "0" + T_ID);
-                                                        t1.setRout(sp1.getSelectedItem().toString());
+                                                getEmail.setPositiveButton("Ok", (dialog, which) -> {
 
-                                                        mypdf(v,t1.getTicket_No(),t1.getDestination(),t1.getSource(),
-                                                                t1.getRout(),t1.getPay(),t1.getCond(),t1.getDate(),t1.getTime());
-
-                                                        rf7.child(t1.getDate()).child(t1.getTicket_No()).setValue(t1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    DatabaseReference UpdataeBlance = FirebaseDatabase.getInstance().getReference("Customer").child(TIL_cardID.getEditText().getText().toString().trim());
-                                                                    RegisterUser bel = new RegisterUser();
-                                                                    if (CurrentBalance <= 25) {
-                                                                        Toast.makeText(First_Activity.this, "Not enough Balance", Toast.LENGTH_SHORT).show();
-                                                                    } else {
-                                                                        tempBel = CurrentBalance - pay;
-                                                                        if (tempBel <= 25) {
-                                                                            bel.setBalance(String.valueOf(tempBel));
-                                                                            UpdataeBlance.child("balance").setValue(bel.getBalance());
-                                                                            sendMail(1);
-                                                                        } else {
-                                                                            bel.setBalance(String.valueOf(tempBel));
-                                                                            UpdataeBlance.child("balance").setValue(bel.getBalance());
-                                                                            sendMail(0);
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                    Toast.makeText(First_Activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            }
-                                                        });
-
+                                                    day = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+                                                    month = String.valueOf(c.get(Calendar.MONTH) + 1);
+                                                    year = String.valueOf(c.get(Calendar.YEAR));
+                                                    h = String.valueOf(c.get(Calendar.HOUR));
+                                                    min = String.valueOf(c.get(Calendar.MINUTE));
+                                                    if (c.get(Calendar.HOUR_OF_DAY) > 12) {
+                                                        tm = "PM";
+                                                    } else {
+                                                        tm = "AM";
                                                     }
+
+                                                    DatabaseReference rf7 = FirebaseDatabase.getInstance().getReference("Customer").child(TIL_cardID.getEditText().getText().toString().trim()).child("Tickets");
+                                                    t1.setDate(day + "-" + month + "-" + year);
+                                                    t1.setCond(Conductor_Name);
+                                                    t1.setDestination(sp3.getSelectedItem().toString());
+                                                    t1.setSource(sp2.getSelectedItem().toString());
+                                                    t1.setPay(String.valueOf(pay));
+                                                    t1.setTime(h + ":" + min + " " + tm);
+                                                    t1.setTicket_No(t1.getDate().replace("-", "") + "0" + T_ID);
+                                                    t1.setRout(sp1.getSelectedItem().toString());
+
+                                                    mypdf(v, t1.getTicket_No(), t1.getDestination(), t1.getSource(),
+                                                            t1.getRout(), t1.getPay(), t1.getCond(), t1.getDate(), t1.getTime());
+
+                                                    rf7.child(t1.getDate()).child(t1.getTicket_No()).setValue(t1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                DatabaseReference UpdataeBlance = FirebaseDatabase.getInstance().getReference("Customer").child(TIL_cardID.getEditText().getText().toString().trim());
+                                                                RegisterUser bel = new RegisterUser();
+                                                                if (CurrentBalance <= 25) {
+                                                                    Toast.makeText(First_Activity.this, "Not enough Balance", Toast.LENGTH_SHORT).show();
+                                                                } else {
+                                                                    tempBel = CurrentBalance - pay;
+                                                                    if (tempBel <= 25) {
+                                                                        bel.setBalance(String.valueOf(tempBel));
+                                                                        UpdataeBlance.child("balance").setValue(bel.getBalance());
+                                                                        sendMail(1);
+                                                                    } else {
+                                                                        bel.setBalance(String.valueOf(tempBel));
+                                                                        UpdataeBlance.child("balance").setValue(bel.getBalance());
+                                                                        sendMail(0);
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                Toast.makeText(First_Activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+
                                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
@@ -532,7 +531,7 @@ public class First_Activity extends AppCompatActivity {
                 "Bus Services.";
         String subject = "Ticket issue";
 
-        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mail, subject, message,t1.getTicket_No(),true);
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mail, subject, message, t1.getTicket_No(), true);
         javaMailAPI.SetToastMessage("E-Ticket Send");
         javaMailAPI.execute();
         TIL_cardID.getEditText().setText("");
@@ -550,7 +549,7 @@ public class First_Activity extends AppCompatActivity {
                 "Bus Services.";
         String subject = "Card Balance Alert";
 
-        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mail, subject, message,t1.getTicket_No(),false);
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mail, subject, message, t1.getTicket_No(), false);
         javaMailAPI.SetToastMessage("Alert Balance Mail Send");
         javaMailAPI.execute();
         TIL_cardID.getEditText().setText("");
