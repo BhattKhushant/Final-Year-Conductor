@@ -85,6 +85,8 @@ public class First_Activity extends AppCompatActivity {
 
     Calendar c = Calendar.getInstance();
 
+    String day, month, year, h, min, tm;
+
     DatabaseReference reference1, reference2, reference3, reference4, reference5;
 
     String RECIPENT_EMail, CARDID;
@@ -304,19 +306,20 @@ public class First_Activity extends AppCompatActivity {
                                                 getEmail.setTitle("Send E-Ticket");
                                                 getEmail.setMessage("Send E-Ticket to " + RECIPENT_EMail);
                                                 getEmail.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                    @Override
+
+                                                    day="hello ";
+//                                                    day = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+//                                                    month = String.valueOf(c.get(Calendar.MONTH) + 1);
+//                                                    year = String.valueOf(c.get(Calendar.YEAR));
+//                                                    h = String.valueOf(c.get(Calendar.HOUR));
+//                                                    min = String.valueOf(c.get(Calendar.MINUTE));
+//                                                        if (c.get(Calendar.HOUR_OF_DAY) > 12) {
+//                                                        tm = "PM";
+//                                                    } else {
+//                                                        tm = "AM";
+//                                                    }
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        String day, month, year, h, min, tm;
-                                                        day = String.valueOf(c.get(Calendar.DAY_OF_MONTH));
-                                                        month = String.valueOf(c.get(Calendar.MONTH) + 1);
-                                                        year = String.valueOf(c.get(Calendar.YEAR));
-                                                        h = String.valueOf(c.get(Calendar.HOUR));
-                                                        min = String.valueOf(c.get(Calendar.MINUTE));
-                                                        if (c.get(Calendar.HOUR_OF_DAY) > 12) {
-                                                            tm = "PM";
-                                                        } else {
-                                                            tm = "AM";
-                                                        }
+
                                                         DatabaseReference rf7 = FirebaseDatabase.getInstance().getReference("Customer").child(TIL_cardID.getEditText().getText().toString().trim()).child("Tickets");
                                                         t1.setDate(day + "-" + month + "-" + year);
                                                         t1.setCond(Conductor_Name);
